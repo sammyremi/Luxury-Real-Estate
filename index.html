@@ -1,34 +1,559 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxury Real Estate | Sophisticated Living</title>
-    <link rel="stylesheet" href="style.css">
-    <meta name="description" content="Discover premium, sophisticated, and cinematic luxury real estate properties.">
-    <!-- Google Fonts for premium typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Remi Homes - Luxury Real Estate Nigeria</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header class="hero-section">
-        <!-- Background Video -->
-        <div class="video-container">
-            <video 
-                class="hero-video"
-                autoplay 
-                muted 
-                loop
-                playsinline
-                poster="property-fallback.png"
-            >
-                <source src="mansion_video/Luxury_mansion_exterior_boomerang.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <!-- Gradient Overlay -->
-            <div class="video-overlay"></div>
+
+  <!-- Navigation Header -->
+  <header class="header">
+    <a href="#" class="logo">
+      <svg width="22" height="22" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 6V26M24 6V26M16 10V26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M8 12H16M16 16H24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M6 6H10M22 6H26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M6 26H10M14 26H18M22 26H26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span>Remi Homes</span>
+    </a>
+    <nav class="nav">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#properties" class="nav-link">Properties</a>
+      <a href="#blog" class="nav-link">Blog</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+    <a href="#contact" class="btn-book">Book a Visit <span class="arrow">↗</span></a>
+  </header>
+
+  <!-- Minimal Preloader -->
+  <div class="loader" id="loader">
+    <div class="loader-text" id="loaderText">0%</div>
+    <div class="progress-bar-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+  </div>
+
+  <!-- Background Canvas (Fixed) -->
+  <div class="canvas-container">
+    <canvas id="sequenceCanvas"></canvas>
+  </div>
+
+  <!-- Scrollable Wrapper -->
+  <div class="scroll-wrapper">
+
+    <!-- 1. HOME / HERO SECTION -->
+    <section id="home" class="section hero-section">
+      <div class="hero-content">
+        <span class="hero-subtitle">REMI HOMES NIGERIA</span>
+        <h1 class="hero-title">FIND YOUR PERFECT<br>LIVING SPACE</h1>
+        <p class="hero-description">Discover exclusive luxury homes and sophisticated properties tailored to your modern lifestyle with Remi Homes.</p>
+        
+        <!-- Search Panel -->
+        <div class="search-panel">
+          <div class="search-field">
+            <label>Location</label>
+            <div class="select-wrapper">
+              <select id="locationSelect">
+                <option value="ikoyi">Ikoyi, Lagos</option>
+                <option value="vi">Victoria Island, Lagos</option>
+                <option value="lekki">Lekki Phase 1, Lagos</option>
+                <option value="eko">Eko Atlantic, Lagos</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="search-field">
+            <label>Property Type</label>
+            <div class="select-wrapper">
+              <select id="typeSelect">
+                <option value="villa">Luxury Villa</option>
+                <option value="penthouse">Sky Penthouse</option>
+                <option value="apartment">Modern Apartment</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="search-field">
+            <label>Price Range</label>
+            <div class="price-slider-container">
+              <span class="price-display">$1,000,000 - $5,000,000+</span>
+            </div>
+          </div>
+          
+          <button class="search-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span>Search</span>
+          </button>
         </div>
-    </header>
+      </div>
+    </section>
+
+    <!-- 2. INTRODUCTION / BRAND STATEMENT -->
+    <section class="section intro-section">
+      <div class="section-container">
+        <span class="section-tag">Brand Philosophy</span>
+        <blockquote class="brand-quote">
+          "We craft architectural masterpieces that stand the test of time, blending modern design with structural excellence in Nigeria's most exclusive neighborhoods."
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- 3. ABOUT SECTION -->
+    <section id="about" class="section about-section">
+      <div class="section-container">
+        <div class="about-grid">
+          <div class="about-left">
+            <span class="section-tag">About Remi Homes</span>
+            <h2 class="section-title">Crafting Legacies,<br>Shaping Horizons</h2>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <span class="stat-number">10+</span>
+                <span class="stat-label">Years of Excellence</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">150+</span>
+                <span class="stat-label">Luxury Units Delivered</span>
+              </div>
+            </div>
+          </div>
+          <div class="about-right">
+            <p class="about-text">
+              Remi Homes is Nigeria’s premier luxury real estate developer. Specializing in high-end residential developments in Ikoyi, Victoria Island, and Lekki, we combine avant-garde architecture with pristine craftsmanship to deliver investment-grade properties that define sophistication.
+            </p>
+            <p class="about-text">
+              Every detail is meticulously planned and executed, ensuring sustainable structural integrity and a refined living experience. We build spaces that are not just beautiful homes, but legacies of value.
+            </p>
+            <a href="#contact" class="btn-primary">Learn More About Us ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. FEATURED PROPERTIES (3D SCROLL ANIMATION CAROUSEL) -->
+    <section id="properties" class="section properties-section">
+      <div class="properties-sticky">
+        <div class="properties-header">
+          <div class="header-left">
+            <span class="section-tag">Our Portfolio</span>
+            <h2 class="section-title">Featured Properties</h2>
+          </div>
+          <div class="header-right">
+            <div class="carousel-nav-buttons">
+              <button class="nav-btn active">Portfolio</button>
+              <button class="nav-btn">Approach</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="carousel-container-3d">
+          <div class="carousel-track">
+            
+            <!-- Property 1 -->
+            <div class="property-card-3d">
+              <div class="card-image-wrapper">
+                <img src="./Lux/frame_0001.webp" alt="Eko Atlantic Villa" />
+                <span class="property-tag">For Sale</span>
+              </div>
+              <div class="card-content">
+                <span class="property-loc">Eko Atlantic, Lagos</span>
+                <h3 class="property-name">Eko Atlantic Villa</h3>
+                <p class="property-desc">Exquisite oceanfront villa featuring floor-to-ceiling glass and smart automation.</p>
+                <div class="property-meta">
+                  <span>5 Beds</span>
+                  <span>6 Baths</span>
+                  <span>6,200 sq ft</span>
+                </div>
+                <div class="property-footer">
+                  <span class="property-price">$3,200,000</span>
+                  <a href="#contact" class="property-cta">Explore Property ↗</a>
+                </div>
+              </div>
+              <div class="card-overlay">
+                <span class="overlay-action">Visit Site ↗</span>
+              </div>
+            </div>
+
+            <!-- Property 2 -->
+            <div class="property-card-3d">
+              <div class="card-image-wrapper">
+                <img src="./Lux/frame_0060.webp" alt="Ikoyi Skyline Penthouse" />
+                <span class="property-tag">For Sale</span>
+              </div>
+              <div class="card-content">
+                <span class="property-loc">Ikoyi, Lagos</span>
+                <h3 class="property-name">Ikoyi Skyline Penthouse</h3>
+                <p class="property-desc">Ultra-exclusive penthouse overlooking the Lagos lagoon with a private infinity pool.</p>
+                <div class="property-meta">
+                  <span>4 Beds</span>
+                  <span>5 Baths</span>
+                  <span>5,500 sq ft</span>
+                </div>
+                <div class="property-footer">
+                  <span class="property-price">$4,500,000</span>
+                  <a href="#contact" class="property-cta">Explore Property ↗</a>
+                </div>
+              </div>
+              <div class="card-overlay">
+                <span class="overlay-action">Visit Site ↗</span>
+              </div>
+            </div>
+
+            <!-- Property 3 -->
+            <div class="property-card-3d">
+              <div class="card-image-wrapper">
+                <img src="./Lux/frame_0120.webp" alt="Victoria Harbor Residence" />
+                <span class="property-tag">For Sale</span>
+              </div>
+              <div class="card-content">
+                <span class="property-loc">Victoria Island, Lagos</span>
+                <h3 class="property-name">Victoria Harbor Residence</h3>
+                <p class="property-desc">Sleek, modern minimalist residential concept situated in the heart of Victoria Island.</p>
+                <div class="property-meta">
+                  <span>5 Beds</span>
+                  <span>5 Baths</span>
+                  <span>4,800 sq ft</span>
+                </div>
+                <div class="property-footer">
+                  <span class="property-price">$2,900,000</span>
+                  <a href="#contact" class="property-cta">Explore Property ↗</a>
+                </div>
+              </div>
+              <div class="card-overlay">
+                <span class="overlay-action">Visit Site ↗</span>
+              </div>
+            </div>
+
+            <!-- Property 4 -->
+            <div class="property-card-3d">
+              <div class="card-image-wrapper">
+                <img src="./Lux/frame_0180.webp" alt="Lekki Modern Concept" />
+                <span class="property-tag">For Sale</span>
+              </div>
+              <div class="card-content">
+                <span class="property-loc">Lekki Phase 1, Lagos</span>
+                <h3 class="property-name">Lekki Modern Concept</h3>
+                <p class="property-desc">A masterpiece of tropical modernism, balancing indoor-outdoor living seamlessly.</p>
+                <div class="property-meta">
+                  <span>4 Beds</span>
+                  <span>4 Baths</span>
+                  <span>4,100 sq ft</span>
+                </div>
+                <div class="property-footer">
+                  <span class="property-price">$1,850,000</span>
+                  <a href="#contact" class="property-cta">Explore Property ↗</a>
+                </div>
+              </div>
+              <div class="card-overlay">
+                <span class="overlay-action">Visit Site ↗</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. WHY CHOOSE US -->
+    <section class="section why-section">
+      <div class="section-container">
+        <div class="section-header-centered">
+          <span class="section-tag">Value Proposition</span>
+          <h2 class="section-title">Why Choose Us</h2>
+        </div>
+        
+        <div class="why-grid">
+          <div class="why-card">
+            <div class="why-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
+            <h3>Premium Listings</h3>
+            <p>Curated exclusive luxury homes and sophisticated properties in Nigeria's most coveted destinations.</p>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h3>Expert Guidance</h3>
+            <p>Expert local knowledge and personalized guidance to help you navigate luxury acquisitions seamlessly.</p>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+            </div>
+            <h3>Market Analytics</h3>
+            <p>Data-driven insights and market trends for smarter, yield-generating real estate investment decisions.</p>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+            <h3>Secure Transactions</h3>
+            <p>Secure and transparent legal process for a completely worry-free property ownership experience.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PROPERTY INVESTMENT / SERVICES -->
+    <section class="section services-section">
+      <div class="section-container">
+        <div class="services-grid">
+          <div class="services-left">
+            <span class="section-tag">Services</span>
+            <h2 class="section-title">Property Investment & Advisory</h2>
+            <p class="section-description">We assist clients in building robust portfolios that grow in value, backed by deep market analysis and construction excellence.</p>
+          </div>
+          <div class="services-right">
+            <div class="service-item">
+              <span class="service-num">01</span>
+              <div class="service-details">
+                <h3>Portfolio Management</h3>
+                <p>Maximize yields through prime residential and commercial acquisitions in high-value Lagos zones.</p>
+              </div>
+            </div>
+            <div class="service-item">
+              <span class="service-num">02</span>
+              <div class="service-details">
+                <h3>Development & Advisory</h3>
+                <p>Bespoke architectural design and end-to-end development advisory for private and corporate investors.</p>
+              </div>
+            </div>
+            <div class="service-item">
+              <span class="service-num">03</span>
+              <div class="service-details">
+                <h3>Valuation & Brokerage</h3>
+                <p>High-accuracy asset valuation and private acquisition representation for high-net-worth individuals.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. PROPERTY EXPERIENCE / PROCESS -->
+    <section class="section process-section">
+      <div class="section-container">
+        <div class="section-header-centered">
+          <span class="section-tag">Workflow</span>
+          <h2 class="section-title">Our Acquisition Process</h2>
+        </div>
+        
+        <div class="process-timeline">
+          <div class="process-step">
+            <div class="step-num">01</div>
+            <h3>Consultation</h3>
+            <p>Aligning on your investment criteria, location preferences, and aesthetic sensibilities.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-num">02</div>
+            <h3>Private Viewing</h3>
+            <p>Curating exclusive tours of our premium portfolio and under-development landmarks.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-num">03</div>
+            <h3>Acquisition</h3>
+            <p>Transparent legal contracting and structural signoff with full escrow compliance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. TESTIMONIALS -->
+    <section class="section testimonials-section">
+      <div class="section-container">
+        <span class="section-tag">Client Voices</span>
+        <h2 class="section-title">What Our Clients Say</h2>
+        
+        <div class="testimonial-slider">
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"Remi Homes delivered an exceptional property that exceeded our design expectations. Their attention to structural integrity and finishes is unmatched in Lagos."</p>
+            <div class="testimonial-author">
+              <span class="author-name">Chief A. Ademola</span>
+              <span class="author-desc">Ikoyi resident</span>
+            </div>
+          </div>
+          
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"An investment partner you can trust. The Eko Atlantic acquisition has already yielded incredible returns. Exceptional service from start to finish."</p>
+            <div class="testimonial-author">
+              <span class="author-name">Dr. Ngozi E.</span>
+              <span class="author-desc">International Investor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. CALL TO ACTION -->
+    <section class="section cta-section">
+      <div class="cta-banner">
+        <div class="cta-inner">
+          <h2>READY TO FIND YOUR DREAM HOME?</h2>
+          <p>Let us help you discover a place you'll love to live.</p>
+          <a href="#contact" class="btn-cta">See Portfolio ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. BLOG / INSIGHTS -->
+    <section id="blog" class="section blog-section">
+      <div class="section-container">
+        <div class="properties-header">
+          <div class="header-left">
+            <span class="section-tag">Insights</span>
+            <h2 class="section-title">Latest Real Estate News</h2>
+          </div>
+          <div class="header-right">
+            <a href="#contact" class="btn-text">View All Articles ↗</a>
+          </div>
+        </div>
+        
+        <div class="blog-grid">
+          <article class="blog-card">
+            <div class="blog-img-wrapper">
+              <img src="./Lux/frame_0045.webp" alt="Lagos Real Estate Outlook" />
+            </div>
+            <div class="blog-body">
+              <span class="blog-date">August 15, 2026</span>
+              <h3>Lagos Real Estate Outlook: Prime Areas for Capital Growth</h3>
+              <p>An in-depth review of infrastructure developments driving property appreciation across Lekki and Ikoyi.</p>
+              <a href="#contact" class="read-more">Read Insight ↗</a>
+            </div>
+          </article>
+
+          <article class="blog-card">
+            <div class="blog-img-wrapper">
+              <img src="./Lux/frame_0095.webp" alt="Rise of Eko Atlantic" />
+            </div>
+            <div class="blog-body">
+              <span class="blog-date">July 28, 2026</span>
+              <h3>The Rise of Eko Atlantic: A Hub for High-Net-Worth Investors</h3>
+              <p>Why international capital is looking towards Nigeria's smart city for secure, tax-efficient real estate assets.</p>
+              <a href="#contact" class="read-more">Read Insight ↗</a>
+            </div>
+          </article>
+
+          <article class="blog-card">
+            <div class="blog-img-wrapper">
+              <img src="./Lux/frame_0150.webp" alt="Architectural Trends" />
+            </div>
+            <div class="blog-body">
+              <span class="blog-date">June 10, 2026</span>
+              <h3>Architectural Trends: Blending Sustainable Design with Modernism</h3>
+              <p>How tropical modernism is redefining luxury living spaces to maximize natural light and ventilation.</p>
+              <a href="#contact" class="read-more">Read Insight ↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. CONTACT SECTION -->
+    <section id="contact" class="section contact-section">
+      <div class="section-container">
+        <div class="contact-grid">
+          <div class="contact-info">
+            <span class="section-tag">Get in Touch</span>
+            <h2 class="section-title">Schedule a Consultation</h2>
+            <p class="contact-desc">Our dedicated client advisors are ready to assist you. Fill in the form or reach out through our Lagos office directly.</p>
+            
+            <div class="contact-details">
+              <div class="detail-item">
+                <strong>Address</strong>
+                <p>12 Kingsway Road, Ikoyi, Lagos, Nigeria</p>
+              </div>
+              <div class="detail-item">
+                <strong>Phone & Email</strong>
+                <p>+234 (1) 460 9000<br>advisory@remihomes.com</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="contact-form-wrapper">
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you! Our advisory team will reach out shortly.');">
+              <div class="form-group">
+                <input type="text" placeholder="Your Name" required />
+              </div>
+              <div class="form-group">
+                <input type="email" placeholder="Email Address" required />
+              </div>
+              <div class="form-group">
+                <textarea rows="4" placeholder="How can we assist you with your property requirements?" required></textarea>
+              </div>
+              <button type="submit" class="btn-primary form-submit">Send Message ↗</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. FOOTER -->
+    <footer class="footer">
+      <div class="section-container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 6V26M24 6V26M16 10V26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M8 12H16M16 16H24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M6 6H10M22 6H26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M6 26H10M14 26H18M22 26H26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span>Remi Homes</span>
+          </div>
+          
+          <div class="footer-links-group">
+            <div class="footer-nav">
+              <a href="#home">Home</a>
+              <a href="#about">About</a>
+              <a href="#properties">Properties</a>
+              <a href="#blog">Blog</a>
+              <a href="#contact">Contact</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <p class="copyright">&copy; 2026 Remi Homes. All Rights Reserved. Designed for premium luxury in Nigeria.</p>
+          <div class="social-links">
+            <a href="#">LN</a>
+            <a href="#">IG</a>
+            <a href="#">TW</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Animation Script -->
+  <script src="script.js"></script>
 </body>
 </html>
