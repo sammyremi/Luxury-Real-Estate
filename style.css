@@ -515,22 +515,27 @@ canvas {
   color: #000000;
 }
 
-/* 3D Track viewport */
+/* 3D Track viewport (Styled as a big outer card with glassmorphic blur) */
 .carousel-container-3d {
-  width: 100%;
-  flex-grow: 1;
+  max-width: 1200px;
+  width: calc(100% - 80px);
+  margin: 40px auto 0 auto;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 50px 0;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
   display: flex;
   align-items: center;
-  perspective: 1200px;
-  transform-style: preserve-3d;
-  margin-top: 40px;
 }
 
 .carousel-track {
   display: flex;
   gap: 50px;
-  transform-style: preserve-3d;
-  padding-left: calc(50vw - 180px); /* Center first card */
+  padding-left: 50px; /* Aligns first card nicely inside the outer card */
   will-change: transform;
 }
 
@@ -545,7 +550,6 @@ canvas {
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 20px;
   overflow: hidden;
-  transform-style: preserve-3d;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
   position: relative;
   will-change: transform;
@@ -1249,11 +1253,15 @@ canvas {
   }
   
   .carousel-container-3d {
+    width: calc(100% - 48px);
+    margin: 20px auto;
+    padding: 24px 0;
+    border-radius: 20px;
     overflow-x: auto;
-    perspective: none;
-    transform-style: flat;
-    padding: 20px 0;
-    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
   
   .carousel-track {
@@ -1314,3 +1322,5 @@ canvas {
     align-items: flex-start;
   }
 }
+
+

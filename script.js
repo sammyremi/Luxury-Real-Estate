@@ -17,6 +17,13 @@ let currentFrame = 0;
 const propertiesSection = document.getElementById('properties');
 let currentTrackTranslate = 0;
 let targetTrackTranslate = 0;
+let lastScrollTime = Date.now();
+let autoPlayOffset = 0;
+const autoPlaySpeed = 0.4; // Drift speed in pixels per frame
+const cardWidth = 360;
+const cardGap = 50;
+const originalCardsCount = 4;
+const loopWidth = originalCardsCount * (cardWidth + cardGap); // 1640px
 
 // Format frame path: Lux/frame_0001.webp ... frame_0192.webp
 function getFramePath(index) {
@@ -100,79 +107,30 @@ function updateActiveNavLink() {
   });
 }
 
-// Liquid 3D Perspective Carousel animation
+// Liquid 3D Perspective Carousel animation (Simplified to keep cards flat and static on scroll)
 function update3DCarousel() {
   if (!propertiesSection) return;
 
-  // On small mobile screens, disable 3D calculations for performance
+  // On small mobile screens, reset track translation and use default mobile overflow scroll
   if (window.innerWidth <= 768) {
     const track = document.querySelector('.carousel-track');
     if (track) track.style.transform = '';
-    const cards = document.querySelectorAll('.property-card-3d');
-    cards.forEach(card => {
-      card.style.transform = '';
-      const img = card.querySelector('.card-image-wrapper img');
-      if (img) img.style.transform = '';
-      const overlay = card.querySelector('.card-overlay');
-      if (overlay) overlay.style.opacity = '';
-    });
     return;
   }
 
-  const rect = propertiesSection.getBoundingClientRect();
-  const scrollHeight = rect.height - window.innerHeight;
-  const progress = Math.min(Math.max(-rect.top / scrollHeight, 0), 1);
-  
   const track = document.querySelector('.carousel-track');
-  const cards = document.querySelectorAll('.property-card-3d');
   
   if (track) {
-    const trackWidth = track.scrollWidth;
-    const viewportWidth = window.innerWidth;
-    const maxTranslate = trackWidth - viewportWidth + 100;
-    
-    // Target translate position
-    targetTrackTranslate = -progress * maxTranslate;
+    // Target translate position (autoplay offset only, completely independent of scroll)
+    targetTrackTranslate = autoPlayOffset;
     
     // Lerp horizontal shift
     const lerpFactor = 0.08;
     currentTrackTranslate += (targetTrackTranslate - currentTrackTranslate) * lerpFactor;
-    track.style.transform = `translateX(${currentTrackTranslate}px) translateZ(0)`;
     
-    // Apply 3D perspective curves
-    cards.forEach(card => {
-      const cardRect = card.getBoundingClientRect();
-      const cardCenter = cardRect.left + cardRect.width / 2;
-      const screenCenter = viewportWidth / 2;
-      const distanceFromCenter = cardCenter - screenCenter;
-      
-      const maxDistance = viewportWidth / 1.5;
-      const maxRotation = 35; // degrees
-      
-      let rotateY = (distanceFromCenter / maxDistance) * maxRotation;
-      rotateY = Math.min(Math.max(rotateY, -maxRotation), maxRotation);
-      
-      let translateZ = -Math.abs(distanceFromCenter / maxDistance) * 150;
-      translateZ = Math.min(Math.max(translateZ, -180), 0);
-      
-      let scale = 1 - Math.abs(distanceFromCenter / maxDistance) * 0.12;
-      scale = Math.min(Math.max(scale, 0.88), 1);
-      
-      // Light overlay shading for depth
-      const overlay = card.querySelector('.card-overlay');
-      if (overlay) {
-        const distanceFraction = Math.min(Math.abs(distanceFromCenter) / (cardRect.width * 1.5), 1);
-        overlay.style.opacity = distanceFraction * 0.65;
-      }
-      
-      card.style.transform = `rotateY(${rotateY}deg) translateZ(${translateZ}px) scale(${scale})`;
-      
-      // Image scroll parallax
-      const img = card.querySelector('.card-image-wrapper img');
-      if (img) {
-        img.style.transform = `translateX(${-distanceFromCenter * 0.08}px) scale(1.1)`;
-      }
-    });
+    // Wrap the current track translation for rendering to create an infinite loop
+    const displayTranslate = ((currentTrackTranslate % loopWidth) - loopWidth) % loopWidth;
+    track.style.transform = `translateX(${displayTranslate}px) translateZ(0)`;
   }
 }
 
@@ -188,6 +146,9 @@ function animate() {
     currentFrame = targetFrame;
     renderFrame(Math.round(currentFrame));
   }
+
+  // Update autoPlayOffset continuously to slide cards from right to left
+  autoPlayOffset -= autoPlaySpeed;
 
   // Update carousel movement in the same RAF loop for performance
   update3DCarousel();
@@ -235,6 +196,7 @@ function onAllLoaded() {
 
 // Listeners
 window.addEventListener('scroll', () => {
+  lastScrollTime = Date.now();
   updateScrollTarget();
   updateActiveNavLink();
 }, { passive: true });
