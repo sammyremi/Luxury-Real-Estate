@@ -19,11 +19,14 @@ let currentTrackTranslate = 0;
 let targetTrackTranslate = 0;
 let lastScrollTime = Date.now();
 let autoPlayOffset = 0;
-const autoPlaySpeed = 0.4; // Drift speed in pixels per frame
-const cardWidth = 360;
-const cardGap = 50;
-const originalCardsCount = 4;
-const loopWidth = originalCardsCount * (cardWidth + cardGap); // 1640px
+const autoPlaySpeed = 1.2; // Faster drift speed in pixels per frame
+const cardWidth = 220;
+const cardGap = 20;
+const originalCardsCount = 5;
+const loopWidth = originalCardsCount * (cardWidth + cardGap); // 1200px
+
+let isHovered = false;
+let hoveredCardIndex = null;
 
 // Format frame path: Lux/frame_0001.webp ... frame_0192.webp
 function getFramePath(index) {
@@ -107,7 +110,7 @@ function updateActiveNavLink() {
   });
 }
 
-// Liquid 3D Perspective Carousel animation (Simplified to keep cards flat and static on scroll)
+// Liquid 3D Perspective Carousel animation (with centering & zoom on hover)
 function update3DCarousel() {
   if (!propertiesSection) return;
 
@@ -119,9 +122,9 @@ function update3DCarousel() {
   }
 
   const track = document.querySelector('.carousel-track');
+  const container = document.querySelector('.carousel-container-3d');
   
   if (track) {
-    // Target translate position (autoplay offset only, completely independent of scroll)
     targetTrackTranslate = autoPlayOffset;
     
     // Lerp horizontal shift
@@ -147,13 +150,88 @@ function animate() {
     renderFrame(Math.round(currentFrame));
   }
 
-  // Update autoPlayOffset continuously to slide cards from right to left
-  autoPlayOffset -= autoPlaySpeed;
+  // Update autoPlayOffset continuously to slide cards from right to left (unless hovered)
+  if (!isHovered) {
+    autoPlayOffset -= autoPlaySpeed;
+  }
 
   // Update carousel movement in the same RAF loop for performance
   update3DCarousel();
 
   requestAnimationFrame(animate);
+}
+
+let hoverTimer = null;
+
+// Setup Property Carousel Hover Centering & Next/Prev Controls
+function setupCarouselInteractions() {
+  const cards = document.querySelectorAll('.property-card-3d');
+  const track = document.querySelector('.carousel-track');
+  const prevBtn = document.getElementById('prevPropertyBtn');
+  const nextBtn = document.getElementById('nextPropertyBtn');
+
+  if (cards.length > 0) {
+    cards.forEach((card, index) => {
+      const imageWrapper = card.querySelector('.card-image-wrapper');
+      const targetElement = imageWrapper || card;
+
+      targetElement.addEventListener('mouseenter', () => {
+        if (hoverTimer) clearTimeout(hoverTimer);
+
+        // Require cursor to rest on property image for 0.5 seconds (500ms) before zooming
+        hoverTimer = setTimeout(() => {
+          isHovered = true;
+          hoveredCardIndex = index;
+          cards.forEach(c => c.classList.remove('focused-card'));
+          card.classList.add('focused-card');
+          if (track) track.classList.add('has-focused');
+        }, 500);
+      });
+
+      targetElement.addEventListener('mouseleave', () => {
+        // Cancel timer if cursor leaves before 1.5 seconds
+        if (hoverTimer) {
+          clearTimeout(hoverTimer);
+          hoverTimer = null;
+        }
+
+        // If card was focused, reset focus state & resume scroll
+        if (hoveredCardIndex === index) {
+          isHovered = false;
+          hoveredCardIndex = null;
+          card.classList.remove('focused-card');
+          if (track) track.classList.remove('has-focused');
+          autoPlayOffset = currentTrackTranslate; // Resume smooth scroll from current position
+        }
+      });
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null; }
+      if (isHovered && hoveredCardIndex !== null && cards.length > 0) {
+        cards[hoveredCardIndex].classList.remove('focused-card');
+        hoveredCardIndex = (hoveredCardIndex + 1) % cards.length;
+        cards[hoveredCardIndex].classList.add('focused-card');
+      } else {
+        autoPlayOffset -= (cardWidth + cardGap);
+      }
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null; }
+      if (isHovered && hoveredCardIndex !== null && cards.length > 0) {
+        cards[hoveredCardIndex].classList.remove('focused-card');
+        hoveredCardIndex = (hoveredCardIndex - 1 + cards.length) % cards.length;
+        cards[hoveredCardIndex].classList.add('focused-card');
+      } else {
+        autoPlayOffset += (cardWidth + cardGap);
+      }
+    });
+  }
 }
 
 // Preload images
@@ -206,4 +284,5 @@ window.addEventListener('resize', resizeCanvas);
 // Init
 resizeCanvas();
 preloadFrames();
+setupCarouselInteractions();
 requestAnimationFrame(animate);

@@ -7,6 +7,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 90px;
 }
 
 body {
@@ -54,9 +55,10 @@ canvas {
 }
 
 .section-container {
-  max-width: 1200px;
+  width: calc(95% - 40px);
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 36px;
 }
 
 /* --- Section Sub-components --- */
@@ -98,10 +100,10 @@ canvas {
   top: 24px;
   left: 50%;
   transform: translateX(-50%);
-  width: calc(100% - 80px);
-  max-width: 1800px;
-  height: 64px;
-  padding: 0 32px;
+  width: calc(95% - 40px);
+  max-width: 1320px;
+  height: 66px;
+  padding: 0 36px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -126,9 +128,9 @@ canvas {
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 11px;
   color: #ffffff;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   text-decoration: none;
   letter-spacing: -0.2px;
@@ -142,18 +144,20 @@ canvas {
 
 .logo svg {
   display: block;
+  width: 24px;
+  height: 24px;
 }
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 48px;
+  gap: 52px;
 }
 
 .nav-link {
   color: rgba(255, 255, 255, 0.65);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 15.5px;
   font-weight: 500;
   position: relative;
   padding: 6px 0;
@@ -185,12 +189,12 @@ canvas {
 .btn-book {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   color: #ffffff;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 14.5px;
   font-weight: 500;
-  padding: 10px 20px;
+  padding: 11px 22px;
   border-radius: 100px;
   border: 1px solid rgba(255, 255, 255, 0.20);
   background: rgba(255, 255, 255, 0.05);
@@ -272,10 +276,10 @@ canvas {
 }
 
 .hero-content {
-  max-width: 1200px;
+  width: calc(95% - 40px);
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 0 40px;
-  width: 100%;
+  padding: 0 36px;
 }
 
 .hero-subtitle {
@@ -478,54 +482,69 @@ canvas {
 }
 
 .properties-header {
-  max-width: 1200px;
-  width: 100%;
+  width: calc(95% - 40px);
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 36px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
 }
 
-.carousel-nav-buttons {
+/* Floating Prev / Next Arrow Buttons */
+.carousel-arrow-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 60;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(15, 15, 15, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
   display: flex;
-  gap: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 4px;
-  border-radius: 50px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.nav-btn {
-  background: transparent;
-  border: none;
-  color: rgba(255, 255, 255, 0.6);
-  padding: 8px 20px;
-  border-radius: 50px;
-  font-size: 12px;
-  font-weight: 600;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.nav-btn.active {
-  background: #ffffff;
+.carousel-arrow-btn.prev-btn {
+  left: 20px;
+}
+
+.carousel-arrow-btn.next-btn {
+  right: 20px;
+}
+
+.carousel-arrow-btn:hover {
+  background: #c5a880;
   color: #000000;
+  border-color: #c5a880;
+  box-shadow: 0 10px 28px rgba(197, 168, 128, 0.45);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-arrow-btn:active {
+  transform: translateY(-50%) scale(0.95);
 }
 
 /* 3D Track viewport (Styled as a big outer card with glassmorphic blur) */
 .carousel-container-3d {
-  max-width: 1200px;
-  width: calc(100% - 80px);
-  margin: 40px auto 0 auto;
+  position: relative;
+  width: calc(95% - 40px);
+  max-width: 1320px;
+  margin: 16px auto 0 auto;
   background: rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 28px;
-  padding: 50px 0;
+  padding: 65px 0;
   overflow: hidden;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
   display: flex;
@@ -534,36 +553,52 @@ canvas {
 
 .carousel-track {
   display: flex;
-  gap: 50px;
-  padding-left: 50px; /* Aligns first card nicely inside the outer card */
+  gap: 20px;
+  padding-left: 30px; /* Aligns first card nicely inside the outer card */
   will-change: transform;
 }
 
 /* 3D Property Card */
 .property-card-3d {
-  flex: 0 0 360px;
-  width: 360px;
-  height: 520px;
-  background: rgba(15, 15, 15, 0.55);
+  flex: 0 0 220px;
+  width: 220px;
+  height: 380px;
+  background: rgba(15, 15, 15, 0.75);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 20px;
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
   position: relative;
-  will-change: transform;
-  transition: border-color 0.3s ease;
+  will-change: transform, opacity;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  z-index: 1;
 }
 
 .property-card-3d:hover {
   border-color: rgba(197, 168, 128, 0.4);
 }
 
+.property-card-3d.focused-card {
+  transform: scale(1.2) translateY(-4px);
+  z-index: 50;
+  border-color: #c5a880;
+  box-shadow: 0 30px 75px rgba(0, 0, 0, 0.95), 0 0 40px rgba(197, 168, 128, 0.45);
+}
+
+.carousel-track.has-focused .property-card-3d:not(.focused-card) {
+  opacity: 0.6;
+  transform: scale(0.96);
+}
+
 .card-image-wrapper {
   position: relative;
   width: 100%;
-  height: 280px;
+  height: 190px;
   overflow: hidden;
 }
 
@@ -576,72 +611,73 @@ canvas {
 
 .property-tag {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 14px;
+  right: 14px;
   background: rgba(0, 0, 0, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #ffffff;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  padding: 6px 12px;
+  padding: 4px 8px;
   border-radius: 4px;
 }
 
 .card-content {
-  padding: 24px;
+  padding: 14px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
 }
 
 .property-loc {
-  font-size: 11px;
+  font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   color: #c5a880;
   font-weight: 500;
 }
 
 .property-name {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 600;
   color: #ffffff;
+  line-height: 1.2;
 }
 
 .property-desc {
-  font-size: 13px;
+  font-size: 11px;
   color: rgba(255, 255, 255, 0.5);
-  line-height: 1.6;
-  height: 62px;
+  line-height: 1.4;
+  height: 32px;
   overflow: hidden;
 }
 
 .property-meta {
   display: flex;
-  gap: 16px;
-  font-size: 12px;
+  gap: 10px;
+  font-size: 10px;
   color: rgba(255, 255, 255, 0.5);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding-top: 12px;
+  padding-top: 8px;
 }
 
 .property-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 .property-price {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   color: #ffffff;
 }
 
 .property-cta {
-  font-size: 12px;
+  font-size: 11px;
   color: #c5a880;
   text-decoration: none;
   font-weight: 500;
@@ -652,23 +688,8 @@ canvas {
   color: #ffffff;
 }
 
-/* Card 3D Overlay */
 .card-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  z-index: 3;
+  display: none !important;
 }
 
 .overlay-action {
@@ -878,9 +899,10 @@ canvas {
 }
 
 .cta-banner {
-  max-width: 1200px;
+  width: calc(95% - 40px);
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 36px;
 }
 
 .cta-inner {
@@ -1203,30 +1225,57 @@ canvas {
 }
 
 @media (max-width: 768px) {
-  .section {
-    padding: 60px 0;
+  .header {
+    width: calc(100% - 32px);
+    top: 12px;
+    height: 52px;
+    padding: 0 16px;
   }
   
-  .section-container {
-    padding: 0 24px;
+  .logo {
+    font-size: 16px;
+    gap: 8px;
+  }
+  
+  .logo svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .nav {
+    display: none;
+  }
+  
+  .btn-book {
+    font-size: 12px;
+    padding: 8px 14px;
+  }
+
+  .section {
+    padding: 50px 0;
+  }
+  
+  .section-container, .hero-content, .properties-header, .cta-banner {
+    width: calc(100% - 32px);
+    padding: 0 16px;
   }
   
   .section-title {
-    font-size: 32px;
+    font-size: 28px;
   }
   
   .hero-title {
-    font-size: 40px;
+    font-size: 34px;
   }
   
   .brand-quote {
-    font-size: 24px;
+    font-size: 22px;
   }
   
   .search-panel {
     flex-direction: column;
-    padding: 24px;
-    gap: 16px;
+    padding: 20px;
+    gap: 14px;
   }
   
   .search-field {
@@ -1234,7 +1283,7 @@ canvas {
     padding-right: 0;
     width: 100%;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 12px;
+    padding-bottom: 10px;
   }
   
   .search-btn {
@@ -1243,48 +1292,45 @@ canvas {
   
   .why-grid, .process-timeline, .blog-grid {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
   }
   
   .properties-sticky {
-    padding: 60px 0;
+    padding: 40px 0;
     height: auto;
     position: relative;
   }
   
   .carousel-container-3d {
-    width: calc(100% - 48px);
+    width: calc(100% - 32px);
     margin: 20px auto;
-    padding: 24px 0;
+    padding: 20px 0;
     border-radius: 20px;
     overflow-x: auto;
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    -webkit-overflow-scrolling: touch;
   }
   
   .carousel-track {
-    padding-left: 24px;
-    padding-right: 24px;
-    gap: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
+    gap: 14px;
     transform: none !important;
   }
   
   .property-card-3d {
-    flex: 0 0 300px;
-    width: 300px;
-    height: auto;
+    flex: 0 0 210px;
+    width: 210px;
+    height: 360px;
     transform: none !important;
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
   }
   
   .card-image-wrapper {
-    height: 200px;
+    height: 170px;
   }
   
   .card-content {
-    padding: 16px;
+    padding: 14px;
   }
   
   .properties-header {
@@ -1294,31 +1340,31 @@ canvas {
   }
   
   .cta-inner {
-    padding: 48px 24px;
+    padding: 40px 20px;
   }
   
   .cta-inner h2 {
-    font-size: 28px;
+    font-size: 24px;
   }
   
   .contact-form-wrapper {
-    padding: 24px;
+    padding: 20px;
   }
   
   .footer-top {
     flex-direction: column;
-    gap: 24px;
+    gap: 20px;
     align-items: flex-start;
   }
   
   .footer-nav {
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
   }
   
   .footer-bottom {
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
     align-items: flex-start;
   }
 }
