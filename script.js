@@ -281,8 +281,53 @@ window.addEventListener('scroll', () => {
 
 window.addEventListener('resize', resizeCanvas);
 
+// Setup Handpicked Properties Carousel Arrows
+function setupHandpickedControls() {
+  const wrapper = document.querySelector('.handpicked-grid-wrapper');
+  const prevBtn = document.getElementById('handpickedPrevBtn');
+  const nextBtn = document.getElementById('handpickedNextBtn');
+
+  if (!wrapper || !prevBtn || !nextBtn) return;
+
+  nextBtn.addEventListener('click', () => {
+    wrapper.scrollBy({ left: 360, behavior: 'smooth' });
+  });
+
+  prevBtn.addEventListener('click', () => {
+    wrapper.scrollBy({ left: -360, behavior: 'smooth' });
+  });
+}
+
+// Setup Heart Button Toggle
+function setupHeartButtons() {
+  document.querySelectorAll('.heart-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      btn.classList.toggle('active');
+      const svg = btn.querySelector('svg');
+      if (btn.classList.contains('active')) {
+        btn.style.background = '#ffffff';
+        btn.style.color = '#ef4444';
+        if (svg) {
+          svg.style.fill = '#ef4444';
+          svg.style.stroke = '#ef4444';
+        }
+      } else {
+        btn.style.background = 'rgba(255, 255, 255, 0.85)';
+        btn.style.color = '#000000';
+        if (svg) {
+          svg.style.fill = 'none';
+          svg.style.stroke = 'currentColor';
+        }
+      }
+    });
+  });
+}
+
 // Init
 resizeCanvas();
 preloadFrames();
 setupCarouselInteractions();
+setupHandpickedControls();
+setupHeartButtons();
 requestAnimationFrame(animate);
