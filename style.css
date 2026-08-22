@@ -735,74 +735,36 @@ canvas {
 }
 
 .handpicked-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
   margin-bottom: 40px;
-}
-
-.handpicked-header .header-right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.handpicked-controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.handpicked-controls .carousel-arrow-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-}
-
-.handpicked-controls .carousel-arrow-btn:hover {
-  background: #c5a880;
-  color: #000000;
-  border-color: #c5a880;
-  transform: scale(1.05);
-  box-shadow: 0 4px 16px rgba(197, 168, 128, 0.3);
 }
 
 .highlight-gold {
   color: #d8bc93;
 }
 
-.btn-view-all {
-  display: inline-flex;
+.handpicked-container-outer {
+  position: relative;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 45px 0;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+  display: flex;
   align-items: center;
-  gap: 8px;
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 12px 24px;
-  border-radius: 12px;
-  font-size: 13px;
-  font-weight: 500;
-  text-decoration: none;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
 }
 
-.btn-view-all:hover {
-  background: #c5a880;
-  color: #000000;
-  border-color: #c5a880;
-  box-shadow: 0 4px 20px rgba(197, 168, 128, 0.3);
+.handpicked-container-outer .prev-btn {
+  left: 20px;
+  z-index: 20;
+}
+
+.handpicked-container-outer .next-btn {
+  right: 20px;
+  z-index: 20;
 }
 
 .handpicked-grid-wrapper {
@@ -811,6 +773,7 @@ canvas {
   scroll-behavior: smooth;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  padding: 10px 50px;
 }
 
 .handpicked-grid-wrapper::-webkit-scrollbar {
@@ -863,41 +826,38 @@ canvas {
 
 .badge-tag {
   position: absolute;
-  top: 16px;
-  left: 16px;
-  padding: 6px 14px;
-  border-radius: 50px;
-  font-size: 11px;
+  top: 14px;
+  right: 14px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 9px;
   font-weight: 600;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 8px;
+  border-radius: 4px;
   z-index: 2;
 }
 
-.sale-tag {
-  background: rgba(197, 168, 128, 0.25);
-  border: 1px solid #c5a880;
-  color: #d8bc93;
-  backdrop-filter: blur(8px);
-}
-
-.rent-tag {
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+.sale-tag, .rent-tag {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: #ffffff;
-  backdrop-filter: blur(8px);
 }
 
 .heart-btn {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 36px;
-  height: 36px;
+  top: 14px;
+  left: 14px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.9);
-  border: none;
-  color: #1e293b;
+  background: rgba(15, 15, 15, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1592,13 +1552,22 @@ canvas {
     position: relative;
   }
   
-  .carousel-container-3d {
+  .carousel-container-3d, .handpicked-container-outer {
     width: calc(100% - 32px);
     margin: 20px auto;
     padding: 20px 0;
     border-radius: 20px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+  }
+
+  .handpicked-grid-wrapper {
+    padding: 10px 16px;
+  }
+
+  .handpicked-container-outer .prev-btn,
+  .handpicked-container-outer .next-btn {
+    display: none;
   }
   
   .carousel-track {
