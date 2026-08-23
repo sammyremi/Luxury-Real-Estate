@@ -22,8 +22,8 @@ let autoPlayOffset = 0;
 const autoPlaySpeed = 0.5; // Smooth, elegant drift speed in pixels per frame
 const cardWidth = 340;
 const cardGap = 20;
-const originalCardsCount = 5;
-const loopWidth = originalCardsCount * (cardWidth + cardGap); // 1800px
+const originalCardsCount = 9;
+const loopWidth = originalCardsCount * (cardWidth + cardGap); // 3240px
 
 let isHovered = false;
 let hoveredCardIndex = null;

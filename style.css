@@ -437,56 +437,94 @@ canvas {
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: start;
+  gap: 32px;
+  align-items: stretch;
+}
+
+.about-left {
+  background: rgba(15, 15, 15, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  padding: 44px 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+}
+
+.about-left:hover {
+  border-color: rgba(197, 168, 128, 0.4);
+}
+
+.about-right {
+  background: rgba(15, 15, 15, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  padding: 44px 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.about-right:hover {
+  border-color: rgba(197, 168, 128, 0.4);
 }
 
 .stats-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  margin-top: 48px;
+  gap: 32px;
+  margin-top: 40px;
 }
 
 .stat-number {
   font-size: 48px;
-  font-weight: 500;
-  color: #c5a880;
+  font-weight: 600;
+  color: #d8bc93;
   display: block;
+  line-height: 1;
+  margin-bottom: 8px;
 }
 
 .stat-label {
   font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.88);
+  font-weight: 500;
 }
 
 .about-text {
   font-size: 17px;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.95);
   margin-bottom: 24px;
   font-weight: 400;
 }
 
 .btn-primary {
   display: inline-block;
-  color: #ffffff;
+  color: #000000;
+  background: #c5a880;
   text-decoration: none;
   font-size: 14px;
-  font-weight: 500;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 14px 28px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  margin-top: 16px;
+  font-weight: 600;
+  border: 1px solid #c5a880;
+  padding: 14px 32px;
+  border-radius: 100px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: 8px;
 }
 
 .btn-primary:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: #c5a880;
-  color: #c5a880;
+  background: #d8bc93;
+  color: #000000;
+  box-shadow: 0 10px 25px rgba(197, 168, 128, 0.35);
+  transform: translateY(-2px);
 }
 
 /* --- 4. FEATURED PROPERTIES (CAROUSEL) --- */
