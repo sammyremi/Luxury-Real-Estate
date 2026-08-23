@@ -20,10 +20,10 @@ let targetTrackTranslate = 0;
 let lastScrollTime = Date.now();
 let autoPlayOffset = 0;
 const autoPlaySpeed = 0.5; // Smooth, elegant drift speed in pixels per frame
-const cardWidth = 220;
+const cardWidth = 340;
 const cardGap = 20;
 const originalCardsCount = 5;
-const loopWidth = originalCardsCount * (cardWidth + cardGap); // 1200px
+const loopWidth = originalCardsCount * (cardWidth + cardGap); // 1800px
 
 let isHovered = false;
 let hoveredCardIndex = null;
@@ -324,10 +324,81 @@ function setupHeartButtons() {
   });
 }
 
+// Setup Property Search & Filter System
+function setupPropertySearch() {
+  const locationSelect = document.getElementById('locationSelect');
+  const typeSelect = document.getElementById('typeSelect');
+  const priceSelect = document.getElementById('priceSelect');
+  const searchBtn = document.getElementById('searchSubmitBtn');
+
+  if (!searchBtn) return;
+
+  function filterProperties(scrollToResults = true) {
+    const locVal = locationSelect ? locationSelect.value : 'all';
+    const typeVal = typeSelect ? typeSelect.value : 'all';
+    const priceVal = priceSelect ? priceSelect.value : 'all';
+
+    const allCards = document.querySelectorAll('.property-card-3d, .handpicked-card');
+
+    allCards.forEach(card => {
+      const cardLoc = card.getAttribute('data-location') || '';
+      const cardType = card.getAttribute('data-type') || '';
+      const cardPrice = parseFloat(card.getAttribute('data-price')) || 0;
+
+      // Location Filter
+      const locMatch = locVal === 'all' || cardLoc === locVal;
+
+      // Type Filter
+      const typeMatch = typeVal === 'all' || cardType === typeVal;
+
+      // Price Range Filter
+      let priceMatch = true;
+      if (priceVal === 'under-1b') {
+        priceMatch = cardPrice < 1000000000;
+      } else if (priceVal === '1b-3b') {
+        priceMatch = cardPrice >= 1000000000 && cardPrice <= 3000000000;
+      } else if (priceVal === '3b-5b') {
+        priceMatch = cardPrice > 3000000000 && cardPrice <= 5000000000;
+      } else if (priceVal === 'above-5b') {
+        priceMatch = cardPrice > 5000000000;
+      }
+
+      if (locMatch && typeMatch && priceMatch) {
+        card.style.opacity = '1';
+        card.style.filter = 'none';
+        card.style.pointerEvents = 'auto';
+        card.classList.remove('filtered-out');
+      } else {
+        card.style.opacity = '0.2';
+        card.style.filter = 'grayscale(80%)';
+        card.style.pointerEvents = 'none';
+        card.classList.add('filtered-out');
+      }
+    });
+
+    if (scrollToResults) {
+      const targetSec = document.getElementById('properties') || document.getElementById('handpickedGrid');
+      if (targetSec) {
+        targetSec.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }
+
+  searchBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    filterProperties(true);
+  });
+
+  if (locationSelect) locationSelect.addEventListener('change', () => filterProperties(false));
+  if (typeSelect) typeSelect.addEventListener('change', () => filterProperties(false));
+  if (priceSelect) priceSelect.addEventListener('change', () => filterProperties(false));
+}
+
 // Init
 resizeCanvas();
 preloadFrames();
 setupCarouselInteractions();
 setupHandpickedControls();
 setupHeartButtons();
+setupPropertySearch();
 requestAnimationFrame(animate);

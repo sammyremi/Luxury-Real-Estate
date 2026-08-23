@@ -61,10 +61,12 @@
             <label>Location</label>
             <div class="select-wrapper">
               <select id="locationSelect">
+                <option value="all">All Locations</option>
                 <option value="ikoyi">Ikoyi, Lagos</option>
                 <option value="vi">Victoria Island, Lagos</option>
                 <option value="lekki">Lekki Phase 1, Lagos</option>
                 <option value="eko">Eko Atlantic, Lagos</option>
+                <option value="banana">Banana Island, Lagos</option>
               </select>
             </div>
           </div>
@@ -73,21 +75,29 @@
             <label>Property Type</label>
             <div class="select-wrapper">
               <select id="typeSelect">
+                <option value="all">All Property Types</option>
                 <option value="villa">Luxury Villa</option>
                 <option value="penthouse">Sky Penthouse</option>
                 <option value="apartment">Modern Apartment</option>
+                <option value="office">Commercial Office Space</option>
               </select>
             </div>
           </div>
           
           <div class="search-field">
             <label>Price Range</label>
-            <div class="price-slider-container">
-              <span class="price-display">$1,000,000 - $5,000,000+</span>
+            <div class="select-wrapper">
+              <select id="priceSelect">
+                <option value="all">Any Price</option>
+                <option value="under-1b">Under ₦1 Billion</option>
+                <option value="1b-3b">₦1 Billion - ₦3 Billion</option>
+                <option value="3b-5b">₦3 Billion - ₦5 Billion</option>
+                <option value="above-5b">Above ₦5 Billion</option>
+              </select>
             </div>
           </div>
           
-          <button class="search-btn">
+          <button class="search-btn" id="searchSubmitBtn">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -173,7 +183,7 @@
           <div class="carousel-track">
             
             <!-- Property 1 -->
-            <div class="property-card-3d">
+            <div class="property-card-3d" data-location="eko" data-type="villa" data-price="3500000000">
               <div class="card-image-wrapper">
                 <img src="./homes/4ca705f927e5edeeeb0b333151f139e6.jpg" alt="Eko Atlantic Villa" />
                 <span class="property-tag">For Sale</span>
@@ -188,7 +198,7 @@
                   <span>6,200 sq ft</span>
                 </div>
                 <div class="property-footer">
-                  <span class="property-price">$3,200,000</span>
+                  <span class="property-price">₦3,500,000,000</span>
                   <a href="#contact" class="property-cta">Explore Property ↗</a>
                 </div>
               </div>
@@ -198,7 +208,7 @@
             </div>
 
             <!-- Property 2 -->
-            <div class="property-card-3d">
+            <div class="property-card-3d" data-location="ikoyi" data-type="penthouse" data-price="4800000000">
               <div class="card-image-wrapper">
                 <img src="./homes/ed8274acace7a235bf8ce12a8281f5c5.jpg" alt="Ikoyi Skyline Penthouse" />
                 <span class="property-tag">For Sale</span>
@@ -213,7 +223,7 @@
                   <span>5,500 sq ft</span>
                 </div>
                 <div class="property-footer">
-                  <span class="property-price">$4,500,000</span>
+                  <span class="property-price">₦4,800,000,000</span>
                   <a href="#contact" class="property-cta">Explore Property ↗</a>
                 </div>
               </div>
@@ -223,7 +233,7 @@
             </div>
 
             <!-- Property 3 -->
-            <div class="property-card-3d">
+            <div class="property-card-3d" data-location="vi" data-type="penthouse" data-price="2900000000">
               <div class="card-image-wrapper">
                 <img src="./homes/ed47c7f6de39e4c4c521d6f966a52f48.jpg" alt="Victoria Harbor Residence" />
                 <span class="property-tag">For Sale</span>
@@ -238,7 +248,7 @@
                   <span>4,800 sq ft</span>
                 </div>
                 <div class="property-footer">
-                  <span class="property-price">$2,900,000</span>
+                  <span class="property-price">₦2,900,000,000</span>
                   <a href="#contact" class="property-cta">Explore Property ↗</a>
                 </div>
               </div>
@@ -248,7 +258,7 @@
             </div>
 
             <!-- Property 4 -->
-            <div class="property-card-3d">
+            <div class="property-card-3d" data-location="lekki" data-type="apartment" data-price="1850000000">
               <div class="card-image-wrapper">
                 <img src="./homes/99a0dd8df8800c6218fefa683c116e15.jpg" alt="Lekki Modern Concept" />
                 <span class="property-tag">For Sale</span>
@@ -263,7 +273,7 @@
                   <span>4,100 sq ft</span>
                 </div>
                 <div class="property-footer">
-                  <span class="property-price">$1,850,000</span>
+                  <span class="property-price">₦1,850,000,000</span>
                   <a href="#contact" class="property-cta">Explore Property ↗</a>
                 </div>
               </div>
@@ -273,7 +283,7 @@
             </div>
 
             <!-- Property 5 -->
-            <div class="property-card-3d">
+            <div class="property-card-3d" data-location="banana" data-type="villa" data-price="6200000000">
               <div class="card-image-wrapper">
                 <img src="./homes/ed8274acace7a235bf8ce12a8281f5c5.jpg" alt="Banana Island Waterfront" />
                 <span class="property-tag">For Sale</span>
@@ -288,7 +298,7 @@
                   <span>7,500 sq ft</span>
                 </div>
                 <div class="property-footer">
-                  <span class="property-price">$5,800,000</span>
+                  <span class="property-price">₦6,200,000,000</span>
                   <a href="#contact" class="property-cta">Explore Property ↗</a>
                 </div>
               </div>
@@ -298,7 +308,7 @@
             </div>
 
             <!-- Cloned Property 1 (for Infinite Loop) -->
-            <div class="property-card-3d">
+            <div class="property-card-3d" data-location="eko" data-type="villa" data-price="3500000000">
               <div class="card-image-wrapper">
                 <img src="./homes/4ca705f927e5edeeeb0b333151f139e6.jpg" alt="Eko Atlantic Villa" />
                 <span class="property-tag">For Sale</span>
@@ -313,7 +323,7 @@
                   <span>6,200 sq ft</span>
                 </div>
                 <div class="property-footer">
-                  <span class="property-price">$3,200,000</span>
+                  <span class="property-price">₦3,500,000,000</span>
                   <a href="#contact" class="property-cta">Explore Property ↗</a>
                 </div>
               </div>
@@ -323,7 +333,7 @@
             </div>
 
             <!-- Cloned Property 2 (for Infinite Loop) -->
-            <div class="property-card-3d">
+            <div class="property-card-3d" data-location="ikoyi" data-type="penthouse" data-price="4800000000">
               <div class="card-image-wrapper">
                 <img src="./homes/ed8274acace7a235bf8ce12a8281f5c5.jpg" alt="Ikoyi Skyline Penthouse" />
                 <span class="property-tag">For Sale</span>
@@ -338,7 +348,7 @@
                   <span>5,500 sq ft</span>
                 </div>
                 <div class="property-footer">
-                  <span class="property-price">$4,500,000</span>
+                  <span class="property-price">₦4,800,000,000</span>
                   <a href="#contact" class="property-cta">Explore Property ↗</a>
                 </div>
               </div>
@@ -348,7 +358,7 @@
             </div>
 
             <!-- Cloned Property 3 (for Infinite Loop) -->
-            <div class="property-card-3d">
+            <div class="property-card-3d" data-location="vi" data-type="penthouse" data-price="2900000000">
               <div class="card-image-wrapper">
                 <img src="./homes/ed47c7f6de39e4c4c521d6f966a52f48.jpg" alt="Victoria Harbor Residence" />
                 <span class="property-tag">For Sale</span>
@@ -363,7 +373,7 @@
                   <span>4,800 sq ft</span>
                 </div>
                 <div class="property-footer">
-                  <span class="property-price">$2,900,000</span>
+                  <span class="property-price">₦2,900,000,000</span>
                   <a href="#contact" class="property-cta">Explore Property ↗</a>
                 </div>
               </div>
@@ -373,7 +383,7 @@
             </div>
 
             <!-- Cloned Property 4 (for Infinite Loop) -->
-            <div class="property-card-3d">
+            <div class="property-card-3d" data-location="lekki" data-type="apartment" data-price="1850000000">
               <div class="card-image-wrapper">
                 <img src="./homes/99a0dd8df8800c6218fefa683c116e15.jpg" alt="Lekki Modern Concept" />
                 <span class="property-tag">For Sale</span>
@@ -388,7 +398,7 @@
                   <span>4,100 sq ft</span>
                 </div>
                 <div class="property-footer">
-                  <span class="property-price">$1,850,000</span>
+                  <span class="property-price">₦1,850,000,000</span>
                   <a href="#contact" class="property-cta">Explore Property ↗</a>
                 </div>
               </div>
@@ -398,7 +408,7 @@
             </div>
 
             <!-- Cloned Property 5 (for Infinite Loop) -->
-            <div class="property-card-3d">
+            <div class="property-card-3d" data-location="banana" data-type="villa" data-price="6200000000">
               <div class="card-image-wrapper">
                 <img src="./homes/ed8274acace7a235bf8ce12a8281f5c5.jpg" alt="Banana Island Waterfront" />
                 <span class="property-tag">For Sale</span>
@@ -413,12 +423,13 @@
                   <span>7,500 sq ft</span>
                 </div>
                 <div class="property-footer">
-                  <span class="property-price">$5,800,000</span>
+                  <span class="property-price">₦6,200,000,000</span>
                   <a href="#contact" class="property-cta">Explore Property ↗</a>
                 </div>
               </div>
               <div class="card-overlay">
                 <span class="overlay-action">Visit Site ↗</span>
+              </div>
             </div>
 
           </div>
@@ -452,7 +463,7 @@
             <div class="handpicked-grid" id="handpickedGrid">
               
               <!-- Card 1 -->
-              <div class="handpicked-card">
+              <div class="handpicked-card" data-location="ikoyi" data-type="villa" data-price="1850000000">
                 <div class="handpicked-img-wrapper">
                   <img src="./homes/4ca705f927e5edeeeb0b333151f139e6.jpg" alt="Luxury Villa in Ikoyi" />
                   <span class="badge-tag sale-tag">For Sale</span>
@@ -463,7 +474,7 @@
                   </button>
                 </div>
                 <div class="handpicked-body">
-                  <div class="handpicked-price">$1,250,000</div>
+                  <div class="handpicked-price">₦1,850,000,000</div>
                   <h3 class="handpicked-title">Luxury Villa in Ikoyi</h3>
                   <div class="handpicked-location">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -497,7 +508,7 @@
               </div>
 
               <!-- Card 2 -->
-              <div class="handpicked-card">
+              <div class="handpicked-card" data-location="vi" data-type="apartment" data-price="15000000">
                 <div class="handpicked-img-wrapper">
                   <img src="./homes/ed8274acace7a235bf8ce12a8281f5c5.jpg" alt="Modern Apartment in Victoria Island" />
                   <span class="badge-tag rent-tag">For Rent</span>
@@ -508,7 +519,7 @@
                   </button>
                 </div>
                 <div class="handpicked-body">
-                  <div class="handpicked-price">$3,500 <span class="price-unit">/ Month</span></div>
+                  <div class="handpicked-price">₦15,000,000 <span class="price-unit">/ Year</span></div>
                   <h3 class="handpicked-title">Modern Apartment in Victoria Island</h3>
                   <div class="handpicked-location">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -542,7 +553,7 @@
               </div>
 
               <!-- Card 3 -->
-              <div class="handpicked-card">
+              <div class="handpicked-card" data-location="lekki" data-type="office" data-price="950000000">
                 <div class="handpicked-img-wrapper">
                   <img src="./homes/99a0dd8df8800c6218fefa683c116e15.jpg" alt="Commercial Office Space in Lekki" />
                   <span class="badge-tag sale-tag">For Sale</span>
@@ -553,7 +564,7 @@
                   </button>
                 </div>
                 <div class="handpicked-body">
-                  <div class="handpicked-price">$850,000</div>
+                  <div class="handpicked-price">₦950,000,000</div>
                   <h3 class="handpicked-title">Commercial Office Space in Lekki</h3>
                   <div class="handpicked-location">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
