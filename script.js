@@ -114,15 +114,7 @@ function updateActiveNavLink() {
 function update3DCarousel() {
   if (!propertiesSection) return;
 
-  // On small mobile screens, reset track translation and use default mobile overflow scroll
-  if (window.innerWidth <= 768) {
-    const track = document.querySelector('.carousel-track');
-    if (track) track.style.transform = '';
-    return;
-  }
-
   const track = document.querySelector('.carousel-track');
-  const container = document.querySelector('.carousel-container-3d');
   
   if (track) {
     targetTrackTranslate = autoPlayOffset;
@@ -231,6 +223,35 @@ function setupCarouselInteractions() {
         autoPlayOffset += (cardWidth + cardGap);
       }
     });
+  }
+
+  // Mobile Touch Dragging Support
+  const container = document.querySelector('.carousel-container-3d');
+  let touchStartX = 0;
+  let isDraggingTouch = false;
+
+  if (container) {
+    container.addEventListener('touchstart', (e) => {
+      if (e.touches.length > 0) {
+        isDraggingTouch = true;
+        touchStartX = e.touches[0].clientX;
+        isHovered = true;
+      }
+    }, { passive: true });
+
+    container.addEventListener('touchmove', (e) => {
+      if (isDraggingTouch && e.touches.length > 0) {
+        const currentX = e.touches[0].clientX;
+        const deltaX = currentX - touchStartX;
+        touchStartX = currentX;
+        autoPlayOffset -= deltaX;
+      }
+    }, { passive: true });
+
+    container.addEventListener('touchend', () => {
+      isDraggingTouch = false;
+      isHovered = false;
+    }, { passive: true });
   }
 }
 

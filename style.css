@@ -1616,7 +1616,15 @@ canvas {
     position: relative;
   }
   
-  .carousel-container-3d, .handpicked-container-outer {
+  .carousel-container-3d {
+    width: calc(100% - 32px);
+    margin: 20px auto;
+    padding: 30px 0;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .handpicked-container-outer {
     width: calc(100% - 32px);
     margin: 20px auto;
     padding: 20px 0;
@@ -1637,15 +1645,13 @@ canvas {
   .carousel-track {
     padding-left: 16px;
     padding-right: 16px;
-    gap: 14px;
-    transform: none !important;
+    gap: 16px;
   }
   
   .property-card-3d {
-    flex: 0 0 260px;
-    width: 260px;
-    height: 380px;
-    transform: none !important;
+    flex: 0 0 280px;
+    width: 280px;
+    height: 390px;
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
   }
   
