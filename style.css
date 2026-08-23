@@ -305,12 +305,25 @@ canvas {
 }
 
 .hero-description {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.88);
-  max-width: 540px;
+  color: rgba(255, 255, 255, 0.95);
+  max-width: 560px;
   line-height: 1.6;
-  margin-bottom: 48px;
+  margin-bottom: 36px;
+  background: rgba(15, 15, 15, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 20px 24px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  display: inline-block;
+  transition: border-color 0.3s ease;
+}
+
+.hero-description:hover {
+  border-color: rgba(197, 168, 128, 0.4);
 }
 
 /* Search panel styling */
@@ -618,20 +631,18 @@ canvas {
   transform: translateY(-50%) scale(0.95);
 }
 
-/* 3D Track viewport (Styled as a big outer card with glassmorphic blur) */
+/* 3D Track viewport (Styled as a big outer card with sleek dark glass container) */
 .carousel-container-3d {
   position: relative;
   width: calc(92% - 40px);
   max-width: 1200px;
   margin: 16px auto 0 auto;
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(12, 12, 12, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 28px;
   padding: 65px 0;
   overflow: hidden;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
 }
@@ -648,10 +659,8 @@ canvas {
   flex: 0 0 340px;
   width: 340px;
   height: 410px;
-  background: rgba(15, 15, 15, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(18, 18, 18, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
