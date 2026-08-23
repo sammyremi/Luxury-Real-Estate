@@ -454,6 +454,60 @@ function setupPropertySearch() {
   });
 }
 
+// Setup Scroll-Activated Floating Animation for Sections and Cards
+function setupScrollFloatAnimation() {
+  const selectors = [
+    '.section-header',
+    '.about-left',
+    '.about-right',
+    '.intro-left',
+    '.intro-video-wrapper',
+    '.carousel-container-3d',
+    '.handpicked-container-outer',
+    '.services-left',
+    '.service-item',
+    '.process-header',
+    '.process-step',
+    '.testimonials-section .section-header',
+    '.testimonial-card',
+    '.cta-inner',
+    '.blog-card',
+    '.contact-left',
+    '.contact-right',
+    '.stat-item'
+  ];
+
+  const elements = document.querySelectorAll(selectors.join(', '));
+  if (!elements.length) return;
+
+  elements.forEach(el => {
+    el.classList.add('scroll-float');
+  });
+
+  const staggerContainers = document.querySelectorAll('.services-right, .process-grid, .testimonials-grid, .blog-grid, .stats-grid, .handpicked-grid');
+  staggerContainers.forEach(container => {
+    container.classList.add('scroll-float-stagger');
+  });
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px 0px -30px 0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+      } else {
+        entry.target.classList.remove('in-view');
+      }
+    });
+  }, observerOptions);
+
+  elements.forEach(el => observer.observe(el));
+}
+
 // Init
 resizeCanvas();
 preloadFrames();
@@ -461,4 +515,5 @@ setupCarouselInteractions();
 setupHandpickedControls();
 setupHeartButtons();
 setupPropertySearch();
+setupScrollFloatAnimation();
 requestAnimationFrame(animate);
