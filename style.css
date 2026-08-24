@@ -1619,6 +1619,16 @@ canvas {
   .section {
     padding: 50px 0;
   }
+
+  .hero-section {
+    height: auto;
+    min-height: 100vh;
+    padding-top: 110px;
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
   
   .section-container, .hero-content, .properties-header, .cta-banner {
     width: calc(100% - 32px);
@@ -1631,6 +1641,12 @@ canvas {
   
   .hero-title {
     font-size: 34px;
+    margin-top: 16px;
+    margin-bottom: 32px;
+  }
+  
+  .hero-subtitle {
+    margin-bottom: 16px;
   }
   
   .brand-quote {
