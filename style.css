@@ -1686,16 +1686,43 @@ canvas {
   }
 
   .handpicked-container-outer {
-    width: calc(100% - 32px);
-    margin: 20px auto;
-    padding: 20px 0;
-    border-radius: 20px;
+    width: 100%;
+    margin: 16px 0;
+    padding: 12px 0;
+    border-radius: 16px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
 
   .handpicked-grid-wrapper {
-    padding: 10px 16px;
+    padding: 8px 12px;
+  }
+
+  .handpicked-img-wrapper {
+    height: 160px;
+  }
+
+  .handpicked-body {
+    padding: 16px 18px;
+    gap: 8px;
+  }
+
+  .handpicked-title {
+    font-size: 16px;
+    line-height: 1.25;
+  }
+
+  .handpicked-price {
+    font-size: 19px;
+  }
+
+  .handpicked-location {
+    font-size: 12px;
+  }
+
+  .handpicked-meta {
+    font-size: 12px;
+    padding: 6px 0;
   }
 
   .handpicked-container-outer .prev-btn,
